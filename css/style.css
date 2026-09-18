@@ -1,0 +1,246 @@
+/* css/style.css */
+:root {
+  /* Default eSports Theme */
+  --bg-color: #0a0a0f;
+  --panel-bg: #13131c;
+  --text-primary: #e0e0e0;
+  --text-secondary: #8b8b99;
+  --accent-primary: #00f0ff; /* Neon Cyan */
+  --accent-secondary: #bc13fe; /* Neon Violet */
+  --error: #ff3366;
+  --success: #00ff66;
+  --border-color: #2a2a35;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --glow-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+/* Command Deck redesign */
+body.game-shell { background: radial-gradient(circle at 15% 0%, #192b55 0, transparent 31%), radial-gradient(circle at 90% 15%, #381752 0, transparent 28%), #080b16; min-height: 100vh; }
+body.game-shell::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.18; background-image:linear-gradient(rgba(89,196,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(89,196,255,.18) 1px,transparent 1px); background-size:42px 42px; mask-image:linear-gradient(to bottom,black,transparent 70%); }
+.command-deck { position:relative; padding-top:4rem; }.hero { display:flex; align-items:center; justify-content:space-between; gap:3rem; margin-bottom:2rem; }.hero h1{font-size:clamp(2.6rem,6vw,5rem);margin:.25rem 0}.hero h1 span,.logo span{color:#a970ff}.hero p{max-width:600px;color:#a8b4cc;font-size:1.15rem;line-height:1.65}.eyebrow{font-size:.75rem;letter-spacing:.18em;color:#65e9ff;font-weight:800;margin:0}.level-orb{width:150px;height:150px;border-radius:50%;display:grid;place-content:center;text-align:center;background:radial-gradient(circle,#324a8c,#141a38 65%);border:1px solid #71ecff;box-shadow:0 0 35px #2a8ac488,inset 0 0 30px #6c4ae544}.level-orb strong{font-size:3.7rem}.level-orb small{color:#74efff;letter-spacing:.12em}.player-strip{display:grid;grid-template-columns:1.4fr 2fr repeat(3,1fr);gap:1.5rem;padding:1.35rem 1.5rem;margin-bottom:4rem;background:#11172ad9;backdrop-filter:blur(12px)}.player-strip small{display:block;color:#8b98b6;font-size:.7rem;letter-spacing:.12em;margin-bottom:.35rem}.player-strip strong{font-size:1.05rem}.player-strip h2{margin:0;color:#fff;font-size:1.1rem}.xp-bar{height:7px;background:#252d4a;border-radius:9px;margin-top:.55rem;overflow:hidden}.xp-bar i{display:block;height:100%;background:linear-gradient(90deg,#57e1ff,#a970ff);border-radius:inherit}.section-title{display:flex;align-items:end;justify-content:space-between;margin-bottom:1.4rem}.section-title h2{margin:.35rem 0 0}.section-title>span{color:#8b98b6;font-size:.85rem}.mode-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.mode-card{text-align:left;color:#edf1ff;min-height:250px;padding:1.35rem;border-radius:14px;border:1px solid #2d3a61;background:linear-gradient(145deg,#17223f,#0c1122);cursor:pointer;transition:.22s transform,.22s border,.22s box-shadow;position:relative;overflow:hidden}.mode-card:hover{transform:translateY(-7px);border-color:#76ecff;box-shadow:0 12px 32px #0008}.mode-card b{color:#6e7b9a}.mode-card .mode-icon{display:block;font-size:2.5rem;margin:1.4rem 0 .7rem;color:#71ecff}.mode-card h3{margin:0}.mode-card p{color:#a8b4cc;line-height:1.5;font-size:.9rem}.mode-card em{position:absolute;bottom:1.25rem;color:#83ffbb;font-style:normal;font-weight:800}.dsa .mode-icon{color:#b38cff}.cp .mode-icon{color:#ffd566}.technical .mode-icon{color:#fa81ad}.loading-card{text-align:center;padding:2rem}.radar{width:66px;height:66px;border:3px solid #62e8ff;border-right-color:transparent;border-radius:50%;margin:0 auto 1rem;animation:spin 1s linear infinite}
+@media(max-width:850px){.hero{align-items:flex-start}.level-orb{width:105px;height:105px}.player-strip,.mode-grid{grid-template-columns:repeat(2,1fr)}.section-title{align-items:flex-start;gap:1rem;flex-direction:column}}@media(max-width:520px){header{padding:1rem}.container{padding:1.2rem}.hero{flex-direction:column}.player-strip,.mode-grid{grid-template-columns:1fr}}
+
+body.focus-mode {
+  /* Minimalist Lo-Fi Theme */
+  --bg-color: #1a1a24;
+  --panel-bg: #222230;
+  --text-primary: #d4d4dc;
+  --accent-primary: #ffaa00; /* Warm amber */
+  --accent-secondary: #ff77a9; /* Soft pink */
+  --glow-shadow: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.5s ease;
+}
+
+/* Typography & Layout */
+h1, h2, h3 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.accent { color: var(--accent-primary); }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--panel-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  text-shadow: var(--glow-shadow);
+  text-decoration: none;
+}
+nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  transition: color 0.2s;
+}
+nav a:hover { color: var(--accent-primary); }
+
+/* Buttons */
+.btn {
+  background: transparent;
+  color: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: var(--glow-shadow);
+  border-radius: 4px;
+}
+.btn:hover {
+  background: var(--accent-primary);
+  color: var(--bg-color);
+}
+.btn-primary {
+  background: var(--accent-primary);
+  color: var(--bg-color);
+}
+.btn-primary:hover {
+  background: transparent;
+  color: var(--accent-primary);
+}
+
+/* Modals / Dialogs (Modern HTML <dialog>) */
+dialog {
+  background: var(--panel-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--accent-secondary);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+
+/* Arena Split Screen */
+.arena-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: calc(100vh - 65px); /* Minus header */
+  gap: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+@media (max-width: 900px) {
+  .arena-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.panel-header {
+  padding: 1rem;
+  background: rgba(0,0,0,0.2);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.panel-content {
+  padding: 1rem;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+.code-editor-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+/* CodeMirror override */
+.CodeMirror {
+  height: 100% !important;
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+.shoutcaster-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(188, 19, 254, 0.1);
+  border-left: 4px solid var(--accent-secondary);
+  font-style: italic;
+  color: var(--accent-secondary);
+}
+
+/* Dashboard */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+.profile-card {
+  padding: 2rem;
+  text-align: center;
+}
+.profile-card h2 {
+  color: var(--accent-primary);
+  font-size: 2rem;
+}
+.elo-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--accent-secondary);
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+}
+.loadout-selector select {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: var(--bg-color);
+  color: white;
+  border: 1px solid var(--border-color);
+}
+.find-match-btn {
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Output Console */
+.output-console {
+  height: 150px;
+  background: #000;
+  color: #0f0;
+  font-family: var(--font-mono);
+  padding: 0.5rem;
+  overflow-y: auto;
+  font-size: 0.85rem;
+}

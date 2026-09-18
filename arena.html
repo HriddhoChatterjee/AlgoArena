@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AlgoArena | Live Match</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- CodeMirror CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/monokai.min.css">
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">ALGO<span class="accent">ARENA</span></a>
+    <div>
+      <button class="btn" id="focus-toggle">Focus Mode</button>
+      <button class="btn" style="color: var(--error); border-color: var(--error);" onclick="window.location.href='dashboard.html'">Surrender</button>
+    </div>
+  </header>
+
+  <div class="arena-layout">
+    <!-- Left Panel: Problem Data -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3 id="prob-title">Loading Challenge...</h3>
+        <span class="elo-badge" style="font-size: 0.8rem;" id="prob-diff">Difficulty</span>
+      </div>
+      <div class="panel-content">
+        <div id="prob-narrative" style="margin-bottom: 1rem; color: var(--text-secondary);"></div>
+        <h4>Constraints</h4>
+        <ul id="prob-constraints" style="margin-bottom: 1rem;"></ul>
+        
+        <h4>Test Cases</h4>
+        <pre id="prob-tests" style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 4px; overflow-x: auto; font-family: var(--font-mono);"></pre>
+
+        <!-- Live Commentary -->
+        <div class="shoutcaster-box">
+          <strong>🎙️ Hypecaster:</strong>
+          <span id="shoutcast-text">"Welcome to the Arena! Players are analyzing the problem..."</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel: Code Editor -->
+    <div class="panel">
+      <div class="panel-header" style="justify-content: flex-start; gap: 1rem;">
+        <select id="lang-select" style="background: transparent; color: white; border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 4px;">
+          <option value="python">Python</option>
+          <option value="cpp">C++</option>
+          <option value="javascript">JavaScript</option>
+        </select>
+        <button class="btn btn-primary" id="btn-submit" style="margin-left: auto;">Submit Solution</button>
+      </div>
+      
+      <div class="code-editor-container">
+        <textarea id="code-editor"></textarea>
+      </div>
+      
+      <div class="output-console" id="output-console">
+        > Awaiting execution...
+      </div>
+    </div>
+  </div>
+
+  <aside id="bot-hud" style="position:fixed;right:1.2rem;bottom:1.2rem;background:#11172a;border:1px solid #5c6f9e;border-radius:12px;padding:1rem;min-width:210px;box-shadow:0 12px 30px #0008;">
+    <small style="color:#8b98b6;letter-spacing:.1em;">ADAPTIVE RIVAL</small><strong id="bot-name" style="display:block;margin:.35rem 0;">Bot loading...</strong><span id="bot-level" style="color:#71ecff;font-size:.85rem;"></span><div class="xp-bar"><i id="bot-progress" style="width:8%"></i></div><small id="bot-status" style="display:block;margin-top:.5rem;color:#a8b4cc;">Analyzing the problem...</small>
+  </aside>
+
+  <dialog id="match-over-modal">
+    <div style="text-align: center;">
+      <h2 id="match-over-title">MATCH OVER</h2>
+      <p id="match-over-desc" style="margin-bottom: 2rem;"></p>
+      <button class="btn btn-primary" onclick="window.location.href='dashboard.html'">Return to Dashboard</button>
+    </div>
+  </dialog>
+
+  <!-- CodeMirror JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+  
+  <script src="js/api.js"></script>
+  <script src="js/ws.js"></script>
+  <script src="js/arena.js"></script>
+</body>
+</html>
